@@ -82,18 +82,26 @@ function App() {
           value={formData.description}
         />
       </Content>
-      <AddImage>
-        <input type="file" onChange={onChange} />
-      </AddImage>
-      <CreateNoteButton onClick={createNote}>Create Note</CreateNoteButton>
+      <Content>
+        <AddImage>
+          <input type="file" onChange={onChange} />
+        </AddImage>
+        <NoteButton onClick={createNote}>Create Note</NoteButton>
+      </Content>
       <div style={{ marginBottom: 30 }}>
+        <Heading>Notes</Heading>
         {notes.map((note) => (
-          <div key={note.id || note.name}>
-            <h2>{note.name}</h2>
+          <SubContent key={note.id || note.name}>
+            <div>
+              {note.image && <img src={note.image} style={{ width: 40 }} />}
+            </div>
+            <p>{note.name}</p>
             <p>{note.description}</p>
-            {note.image && <img src={note.image} style={{ width: 40 }} />}
-            <button onClick={() => deleteNote(note)}>Delete note</button>
-          </div>
+
+            <NoteButton onClick={() => deleteNote(note)}>
+              Delete note
+            </NoteButton>
+          </SubContent>
         ))}
       </div>
       <Signout>
@@ -108,7 +116,7 @@ export default withAuthenticator(App);
 const Container = styled.div`
   text-align: center;
   width: 80%;
-  margin: 0px auto;
+  margin: 2px auto;
   background-color: #f5f5f1;
   padding-top: 15px;
 `;
@@ -141,8 +149,19 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0px 5px;
+  align-items: center;
+  justify-content: center;
+`;
+const SubContent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 25px 5px;
   align-self: center;
-  justify-self: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #31465f;
+  padding: 5px;
 `;
 
 const AddImage = styled.div`
@@ -152,15 +171,15 @@ const AddImage = styled.div`
   margin-bottom: 20px;
 `;
 
-const CreateNoteButton = styled.div`
+const NoteButton = styled.div`
   box-shadow: 0px 10px 20px rgba(101, 41 255, 0.15);
   border-radius: 30px;
   width: 120px;
   font-size: 1em;
   color: #31465f;
   margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  /* margin-top: 50px; */
+  /* margin-bottom: 50px; */
   padding: 0.25em 0em 0.4em;
   border: 0.5px solid #31465f;
   border-radius: 3px;
