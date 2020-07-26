@@ -1,4 +1,4 @@
-# Web App - Notes Planner with aws-amplifyapp, auth, CI/CD, GraphQL,
+# Web App - Notes Planner with AWS-amplify, Auth, CI/CD, GraphQL,and DB.
 
 ```
 This project uses libraries and tools like:
