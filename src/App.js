@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+// import './App.css';
+import styled from 'styled-components';
 import { API, Storage } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listNotes } from './graphql/queries';
@@ -65,20 +66,22 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>My Notes App</h1>
-      <input
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        placeholder="Note name"
-        value={formData.name}
-      />
-      <input
-        onChange={(e) =>
-          setFormData({ ...formData, description: e.target.value })
-        }
-        placeholder="Note description"
-        value={formData.description}
-      />
+    <Container>
+      <Heading>Welcome to My Notes App</Heading>
+      <Content>
+        <NewInput
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          placeholder="Note name"
+          value={formData.name}
+        />
+        <NewInput
+          onChange={(e) =>
+            setFormData({ ...formData, description: e.target.value })
+          }
+          placeholder="Note description"
+          value={formData.description}
+        />
+      </Content>
       <input type="file" onChange={onChange} />
       <button onClick={createNote}>Create Note</button>
       <div style={{ marginBottom: 30 }}>
@@ -86,14 +89,54 @@ function App() {
           <div key={note.id || note.name}>
             <h2>{note.name}</h2>
             <p>{note.description}</p>
-            {note.image && <img src={note.image} style={{ width: 100 }} />}
+            {note.image && <img src={note.image} style={{ width: 40 }} />}
             <button onClick={() => deleteNote(note)}>Delete note</button>
           </div>
         ))}
       </div>
       <AmplifySignOut />
-    </div>
+    </Container>
   );
 }
 
 export default withAuthenticator(App);
+
+const Container = styled.div`
+  text-align: center;
+  width: 80%;
+  margin: 0px auto;
+  background-color: #f5f5f1;
+  padding-top: 15px;
+`;
+const Heading = styled.text`
+  color: #31465f;
+  height: 200px;
+  font-size: 1.4rem;
+  font-weight: bold;
+`;
+
+const NewInput = styled.input`
+  width: 80%;
+  margin: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 5px 0px 5px 5px;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 14px;
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: rgba(49, 70, 95, 0.3);
+  }
+  :-ms-input-placeholder {
+    color: #db7093;
+  }
+`;
+
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px 5px;
+  align-self: center;
+  justify-self: center;
+`;
