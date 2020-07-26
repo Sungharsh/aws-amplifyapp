@@ -10,10 +10,11 @@ import {
   Container,
   Content,
   SubContent,
+  Wraper,
   Heading,
   AddImage,
-  NewInput,
-  NoteButton,
+  Input,
+  Button,
   Signout,
 } from './App-Styles';
 
@@ -77,12 +78,12 @@ function App() {
     <Container>
       <Heading>Welcome to My Notes App</Heading>
       <Content>
-        <NewInput
+        <Input
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           placeholder="Note name"
           value={formData.name}
         />
-        <NewInput
+        <Input
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
           }
@@ -92,11 +93,15 @@ function App() {
       </Content>
       <Content>
         <AddImage>
-          <input type="file" onChange={onChange} />
+          <input
+            type="file"
+            onChange={onChange}
+            style={{ color: 'red', paddingLeft: 10 }}
+          />
         </AddImage>
-        <NoteButton onClick={createNote}>Create Note</NoteButton>
+        <Button onClick={createNote}>Create Note</Button>
       </Content>
-      <div style={{ marginBottom: 30 }}>
+      <Wraper style={{ marginBottom: 30 }}>
         <Heading>Notes</Heading>
         {notes.map((note) => (
           <SubContent key={note.id || note.name}>
@@ -106,12 +111,19 @@ function App() {
             <p>{note.name}</p>
             <p>{note.description}</p>
 
-            <NoteButton onClick={() => deleteNote(note)}>
-              Delete note
-            </NoteButton>
+            <Button
+              onClick={() => deleteNote(note)}
+              style={{
+                width: 50,
+                fontSize: '12px',
+                paddingTop: 15,
+              }}
+            >
+              Delete
+            </Button>
           </SubContent>
         ))}
-      </div>
+      </Wraper>
       <Signout>
         <AmplifySignOut />
       </Signout>

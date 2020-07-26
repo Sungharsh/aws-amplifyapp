@@ -5,18 +5,18 @@ export const Container = styled.div`
   width: 80%;
   min-height: 100vh;
   margin: 2px auto;
+  margin-bottom: 100px;
   background-color: #f5f5f1;
   padding-top: 15px;
   padding-bottom: 10px;
 `;
 export const Heading = styled.text`
   color: #31465f;
-  height: 200px;
   font-size: 1.4rem;
   font-weight: bold;
 `;
 
-export const NewInput = styled.input`
+export const Input = styled.input`
   width: 80%;
   margin: 20px;
   box-sizing: border-box;
@@ -52,6 +52,12 @@ export const SubContent = styled.div`
   color: #31465f;
   padding: 5px;
 `;
+export const Wraper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const AddImage = styled.div`
   text-align: center;
@@ -60,9 +66,10 @@ export const AddImage = styled.div`
   margin-bottom: 20px;
 `;
 
-export const NoteButton = styled.div`
+export const Button = styled.div`
   box-shadow: 0px 10px 20px rgba(101, 41 255, 0.15);
   border-radius: 30px;
+  background-color: #e9e9e9;
   width: 120px;
   font-size: 1em;
   color: #31465f;
@@ -70,7 +77,8 @@ export const NoteButton = styled.div`
   padding: 0.25em 0em 0.4em;
   border: 0.5px solid #31465f;
   border-radius: 3px;
-  justify-self: center;
+  justify-content: center;
+  align-items: center;
   transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   &:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
