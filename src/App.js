@@ -82,8 +82,10 @@ function App() {
           value={formData.description}
         />
       </Content>
-      <input type="file" onChange={onChange} />
-      <button onClick={createNote}>Create Note</button>
+      <AddImage>
+        <input type="file" onChange={onChange} />
+      </AddImage>
+      <CreateNoteButton onClick={createNote}>Create Note</CreateNoteButton>
       <div style={{ marginBottom: 30 }}>
         {notes.map((note) => (
           <div key={note.id || note.name}>
@@ -94,7 +96,9 @@ function App() {
           </div>
         ))}
       </div>
-      <AmplifySignOut />
+      <Signout>
+        <AmplifySignOut />
+      </Signout>
     </Container>
   );
 }
@@ -139,4 +143,37 @@ const Content = styled.div`
   gap: 0px 5px;
   align-self: center;
   justify-self: center;
+`;
+
+const AddImage = styled.div`
+  text-align: center;
+  padding-left: 80px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const CreateNoteButton = styled.div`
+  box-shadow: 0px 10px 20px rgba(101, 41 255, 0.15);
+  border-radius: 30px;
+  width: 120px;
+  font-size: 1em;
+  color: #31465f;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 0.25em 0em 0.4em;
+  border: 0.5px solid #31465f;
+  border-radius: 3px;
+  justify-self: center;
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  &:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    cursor: pointer;
+  }
+`;
+const Signout = styled.button`
+  width: 150px;
+  overflow: hidden;
+  border: none;
 `;
